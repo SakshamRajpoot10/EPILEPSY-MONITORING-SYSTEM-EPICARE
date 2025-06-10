@@ -1,0 +1,46 @@
+{% extends "myapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-md-4">
+          <div class="card">
+              <div class="card-body text-center">
+                  <img src="{{ user.profile.image.url }}" class="img-fluid rounded-circle mb-2" alt="Profile Image" width="250" style="border-radius: 50%;">
+
+                  <h4 class="card-title">{{ user.username }}</h4>
+                  <p class="card-text text-muted">{{ user.email }}</p> 
+              </div>
+          </div>
+      </div>
+      <div class="col-md-8">
+          <div class="card">
+              <div class="card-header">
+                  <h5 class="mb-0">Profile Info</h5>
+              </div>
+              <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group">
+                          {% for field in u_form %}
+                              <div class="form-floating mt-3 mb-3">
+                                  {{ field|as_crispy_field }}
+                              </div>
+                          {% endfor %}
+                      </div>
+                      <div class="form-group">
+                          {% for field in p_form %}
+                              <div class="form-floating mt-3 mb-3">
+                                  {{ field|as_crispy_field }}
+                              </div>
+                          {% endfor %}
+                      </div>
+                      <button class="btn btn-primary btn-block btn-lg" type="submit">Update</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div> 
+    
+{% endblock content %}

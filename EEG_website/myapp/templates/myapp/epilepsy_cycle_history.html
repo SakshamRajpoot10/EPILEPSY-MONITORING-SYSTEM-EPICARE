@@ -1,0 +1,43 @@
+<!-- templates/epilepsy_cycle_history.html -->
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Your Seizure History</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    {% if history %}
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Record Date</th>
+                                    <th>Record No</th>                                  
+                                    <th>Actual Class</th>
+                                    <th>Predicted Class</th>
+                                    <th>Sensor Data</th>                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for hist in history %}
+                                <tr>
+                                    <td>{{ hist.created_at|date:"Y-m-d" }}</td>
+                                    <td>{{ hist.recordno }}</td> 
+                                    <td>{{ hist.actual_class }}</td>
+                                    <td>{{ hist.predicted_class }}</td>
+                                    <td>{{ hist.json_data }}</td> 
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p class="text-center">No Record Found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

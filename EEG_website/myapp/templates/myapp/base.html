@@ -1,0 +1,146 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="{% static 'myapp/main.css' %}">
+  {% if title %}
+  <title>EpicareWebApp:: {{title}}</title>
+  {% else %}
+  <title>Epicare::Epilepsy Detection & Alert </title>
+  {% endif %}
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-light-pink">
+    <a class="navbar-brand font-weight-bold" href="{% url 'home' %}">
+      <img src="/media/logo.png" height="40px" alt="Logo" class="mr-2">
+      EpicareWebApp
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}"><i class="fas fa-home"></i> Home <span
+              class="sr-only">(current)</span></a>
+        </li>
+
+
+
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'myapp-doctor-list' %}"><i class="fas fa-user-md"></i> Doctors</a>
+        </li>
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-swatchbook"></i> Awareness
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <p><a class="dropdown-item" href="{% url 'myapp-first-adds' %}">Firt ADD</a></p>
+            <p><a class="dropdown-item" href="{% url 'myapp-gov-helps' %}">Gov. Help</a></p>
+            <p><a class="dropdown-item" href="{% url 'myapp-precaution-helps' %}">Precautions</a></p>
+          </div>
+        </li>
+      </ul>
+
+      <!------search-->
+      <form id="searchform" action="{% url 'search' %}" method="get" class="form-inline">
+        <div class="input-group">
+          <input type="text" class="form-control" name="q" value="{{ request.GET.q }}" placeholder="Search Here...">
+          <div class="input-group-append">
+            <button type="button" onclick="searchform.submit()" class="btn btn-primary">
+              <i class="fa fa-search text-white"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link " href="{% url 'epilepsy-create' %}"><i class="fas fa-user-tie"></i> Add Data</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link " href="{% url 'predict_data' %}"> <i class="fas fa-swatchbook"></i> Pred. Epilepsy</a>
+        </li>
+ 
+
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-tie"></i> Welcome :{{ user.username }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+            <p> <a class="dropdown-item" href="{% url 'search_events' %}"><i class="fas fa-search"></i> Search</a></p>
+            <p><a class="dropdown-item" href="{% url 'user-epilepsys' user %}"><i class="fas fa-history"></i> My
+                History</a></p>
+            
+                <!-- Normal User: Show "My Doctor" -->
+                <p><a class="dropdown-item" href="{% url 'mydoctor-list' user %}">
+                    <i class="fas fa-user-tie"></i> My Doctor</a></p>
+          
+            
+            <p><a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user-tie"></i> Profile</a></p>
+            <div class="dropdown-divider"></div>
+            <form action="{% url 'logout' %}" method="POST" style="display: inline;">
+              {% csrf_token %}
+              <button type="submit" class="dropdown-item">
+                <i class="fas fa-sign-out-alt"></i> Log Out
+              </button>
+            </form>
+          </div>
+        </li>
+
+        {% else %}
+        <li class="nav-item dropdown active">
+          <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-user-tie"></i> Log In</a>
+        </li>
+        <li class="nav-item dropdown active">
+          <a href="{% url 'register' %} " class="nav-link"> <i class="fas fa-user-edit"></i> Sign Up</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container my-bg">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% block content %}
+
+    {% endblock %}
+    {% include 'myapp/footer.html' %}
+  </div>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <!-- <script src="{% static 'myapp/main.js' %}"></script> -->
+</body>
+
+</html>

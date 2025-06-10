@@ -1,0 +1,80 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+<div class="content-section">
+    <h2>Search </h2>
+    <form method="get" action="{% url 'search_events' %}">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" id="start_date" name="start_date" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="end_date">End Date:</label>
+                    <input type="date" id="end_date" name="end_date" class="form-control">
+                </div>
+            </div>
+            <!-- <div class="col-md-3">
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" class="form-control">
+                        <option value="">Select</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+            </div> -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="end_date">Record No.</label>
+                    <input type="text" id="recordno" name="recordno" class="form-control">
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+
+    {% if events %}
+    <h3>Search Results:</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Record Number</th>
+                    <th>Patient ID</th>
+                    <th>Predicted Class</th>
+                    <th>Actual class</th>                   
+                    <th>Recorded Date</th>
+                    <th>Sensor Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in epilepsy_records %}
+                <tr>
+                    <td>{{ data.recordno }}</td>
+                    <td>{{ data.patient_id }}</td>
+                    <td>{{ data.predicted_class }}</td>
+                    <td>{{ data.actual_class }}</td> 
+                    <td>{{ data.created_at|date }}</td>
+                    <td>{{ data.json_data }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>No events found.</p>
+    {% endif %}
+    
+
+</div>
+{% endblock %}

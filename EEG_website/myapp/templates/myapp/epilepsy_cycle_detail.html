@@ -1,0 +1,66 @@
+{% extends "myapp/base.html" %}
+{% block content %}
+<div class="jumbotron mt-3 shadow-lg">
+  <article class="media content-section shadow ">
+    <a href="{{ object.user.profile.image.url }} " target="_blank"> <img src="{{ object.user.profile.image.url }}  "
+        alt="" class="article-img rounded-circle img-thumbnail img-fluid">
+    </a>
+    <div class="media-body">
+      <div class="">
+        <div class="d-flex justify-content-between">
+          <a class="mr-2 mt-0 mb-0  text-dark" href="{% url 'user-epilepsys' object.user.username  %}">
+            <h3>{{ object.user }}</h3>
+          </a>
+          <small class="text-muted  text-align-right">{{ object.date_upload }}</small>
+        </div>
+        {% if object.user != user %}
+        <div class="form-group mt-0 pt-0 d-flex justify-content-end">
+          <a href="{{ object.file.url }}" download class="btn btn-primary flex-last" type="submit"><i
+              class="fas fa-eye"></i> View</a>
+        </div>
+        {% endif %}
+        <hr>
+        {% if object.user == user %}
+        <div>
+          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'epilepsy-update' object.id %}">Update</a>
+          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'epilepsy-delete' object.id %}">Delete</a>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="row">
+        <!-- Heading Section -->
+        <div class="col-12">
+          <h2 class="display-10 text-center">Epilepsy Event Record</h2>
+        </div>
+
+        <!-- Record Information -->
+        <div class="col-md-6 col-lg-10 mx-auto">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <!-- Record Number -->
+              <h5 class="card-title text-info">Record No.: <strong>{{ object.recordno }}</strong></h5>
+
+              <!-- Patient id -->
+              <p class="card-text"><strong>Patient id:</strong> {{ object.patient_id }} </p>
+
+              <!-- Predicted class -->
+              <p class="card-text"><strong>Predicted class:</strong> {{ object.predicted_class }} </p>
+
+              <!--Actual class -->
+              <p class="card-text"><strong>Actual class:</strong>  {{ object.actual_class}}</p>
+ 
+              <!-- Sensor Data -->
+              <p class="card-text"><strong>Sensor Data:</strong> {{ object.json_data }}</p>
+
+              <!-- Date Recorded -->
+              <p class="card-text"><strong>Date Recorded:</strong> {{ object.created_at|date:"F j, Y, g:i a" }}</p>
+
+             
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  </article>
+  {% endblock content %}
