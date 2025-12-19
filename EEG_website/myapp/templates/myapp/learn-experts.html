@@ -1,0 +1,112 @@
+{% extends "myapp/base.html" %}
+{% block content %}
+<style>
+    .info-container {
+        background-color: #f9f9f9;
+        /* Light gray background for readability */
+        border-radius: 8px;
+        /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        /* Subtle shadow */
+        padding: 20px;
+        /* Inner padding */
+        margin-bottom: 30px;
+        /* Space between sections */
+    }
+
+    .info-header {
+        color: #d56da3;
+        /* Custom header color */
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* Two columns per row */
+        gap: 20px;
+        /* Spacing between videos */
+        justify-items: center;
+        /* Center videos horizontally */
+    }
+
+    iframe {
+        width: 100%;
+        /* Make the iframe responsive */
+        max-width: 560px;
+        /* Limit max width */
+        height: 315px;
+        /* Keep aspect ratio */
+        border: none;
+        /* Remove border around iframe */
+        border-radius: 8px;
+        /* Rounded corners for iframe */
+    }
+
+    .contact-item i {
+        color: #d56da3;
+        /* Icon color */
+        margin-right: 10px;
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">What Does the Doctor Say?</h1>
+    <p class="text-center mb-4">
+        Gain insights into epilepsy prediction, detection, and management from leading experts in the field.
+    </p>
+
+    <div class="info-container">
+        <h2 class="info-header">Expert Advice</h2>
+        <p>
+            Doctors emphasize the importance of tracking and monitoring seizure patterns to better predict episodes.
+            Innovative technologies and consistent medical guidance play a crucial role in epilepsy management.
+        </p>
+    </div>
+
+    <div class="info-container">
+        <h2 class="info-header">Informative Videos</h2>
+        <div class="video-grid">
+            <iframe src="https://www.youtube.com/embed/CACkkxnvIRo" title="What Does the Doctor Say About Epilepsy 1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+            <iframe src="https://www.youtube.com/embed/cK-44xy_Cn4" title="What Does the Doctor Say About Epilepsy 4"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+            <iframe src="https://www.youtube.com/embed/4KLjOtbYKSw" title="What Does the Doctor Say About Epilepsy 4"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
+            <iframe src="https://www.youtube.com/embed/RxgZJA625QQ" title="What Does the Doctor Say About Epilepsy 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+            <iframe src="https://www.youtube.com/embed/gUzTE_sG2eQ" title="What Does the Doctor Say About Epilepsy 3"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+            <iframe src="https://www.youtube.com/embed/6FNoN8_zRvw" title="What Does the Doctor Say About Epilepsy 4"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
+            <iframe src="https://www.youtube.com/embed/bTLuMX_xjzk" title="What Does the Doctor Say About Epilepsy 4"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+            <iframe src="https://www.youtube.com/embed/Nmswsl9FceM" title="What Does the Doctor Say About Epilepsy 4"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+            
+
+        </div>
+    </div>
+ 
+</div>
+
+{% endblock content %}

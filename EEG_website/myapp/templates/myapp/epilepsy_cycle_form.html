@@ -1,0 +1,21 @@
+<!-- templates/epilepsy_cycle_form.html -->
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Record Your Epileptic Events</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Save Epileptic Data</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

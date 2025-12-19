@@ -1,0 +1,43 @@
+
+
+pip install pytesseractasgiref==3.7.2
+pip install djangorestframework
+pip install django-cors-headers
+pip install djangorestframework-simplejwt
+
+
+crispy-bootstrap4==2023.1
+Django==5.0.2
+django-crispy-forms==2.1
+packaging==23.2
+pillow==10.2.0
+pytesseract==0.3.10
+sqlparse==0.4.4
+tzdata==2024.1
+
+
+
+
+import os
+import warnings
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from collections import Counter
+from sklearn import svm
+from sklearn.metrics import roc_auc_score , accuracy_score , precision_score, recall_score ,confusion_matrix
+from sklearn.linear_model import LogisticRegression
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from imblearn.combine import SMOTEENN
+from sklearn.preprocessing import StandardScaler
+from sklearn import metrics
+from sklearn.metrics import classification_report
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
+import pickle
+import h5py
+from sklearn.model_selection import GridSearchCV
+from sklearn.pipeline import Pipeline

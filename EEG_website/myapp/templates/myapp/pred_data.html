@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<div class="container">
+    <!-- Title Section -->
+    <h1 class="text-center display-4 mb-1">Predict Seizure Data</h1>
+
+    <!-- Result Section -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4">
+                <h2 class="text-center" style="color: #28a745;">Your Result</h2>
+                {% if prediction %}
+                <div class="mt-4">
+                    <h3 class="text-center display-5">Prediction: <span class="text-primary">{{ prediction }}</span></h3>
+                    <p class="text-center lead">{{ suggestion }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <form method="POST" class="mt-4" action="{% url 'predict_data' %}" onsubmit="return validateJsonData()">
+        {% csrf_token %}  
+
+        <!-- Second Row: JSON Input and Predict Button -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <label for="sensor_data" class="form-label">Sensor Data (JSON Format): Provide sensor data as an array.</label>
+                        <textarea id="sensor_data" name="sensor_data" rows="3" class="form-control border-primary" placeholder='[1, 2, 3, 4, 5]'></textarea>
+                        <div id="error-message" style="color: red; display: none;">Invalid JSON format. Please enter valid JSON data as an array.</div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block mt-3 rounded-pill">Predict</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- First Row: Instructions and Form Inputs -->
+        <div class="row">
+            <!-- Instructions Section   -->
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">How to Use This Tool</h5>
+                        <p class="text-muted text-center">Enter the required fields to predict your epilepsy status.</p>
+                        <strong>Sensor Data (JSON Format):</strong> Provide sensor data as an array.
+                    </div>
+                </div>
+            </div>  
+        </div> 
+    </form>
+</div>
+
+<script>
+    // Function to validate JSON input
+    function isValidJson(input) {
+        try {
+            const parsed = JSON.parse(input);
+            // Check if it's an array
+            return Array.isArray(parsed);
+        } catch (e) {
+            return false;  // If parsing fails, it's not valid JSON
+        }
+    }
+
+    // Validate the JSON data before submitting the form
+    function validateJsonData() {
+        const sensorData = document.getElementById('sensor_data').value;
+        const errorMessage = document.getElementById('error-message');
+
+        // Check if the JSON data is valid
+        if (!isValidJson(sensorData)) {
+            errorMessage.style.display = 'block';  // Show error message
+            return false;  // Prevent form submission
+        }
+
+        errorMessage.style.display = 'none';  // Hide error message if valid
+        return true;  // Allow form submission
+    }
+</script>
+
+{% endblock %}

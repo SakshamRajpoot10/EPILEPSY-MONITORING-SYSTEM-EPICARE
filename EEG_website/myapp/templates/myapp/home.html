@@ -1,0 +1,125 @@
+{% extends "myapp/base.html" %}
+{% block content %}
+{% load static %}
+ 
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/media/banner.webp" class="d-block w-100" alt="Banner Image 1">
+      </div>
+      <div class="carousel-item">
+        <img src="/media/banner1.webp" class="d-block w-100" alt="Banner Image 2">
+      </div>
+      <div class="carousel-item">
+        <img src="/media/banner2.webp" class="d-block w-100" alt="Banner Image 3">
+      </div>
+    </div>
+   
+  </div>
+  
+<h1>Epilepsy Detection & Alert</h1>
+
+<div class="jumbotron mt-3 bg-white shadow-lg p-4">
+    <h2>What is Epilepsy?</h2>
+    <p>
+        Epilepsy disease (also called an epileptic seizure disorder) is a long-term brain condition with repeated
+        seizures
+        (also called fits - a sudden change of neurologic function due to neurons' excessive discharge).
+        A single seizure is not treated as an epileptic seizure.<br><br>
+
+        Epilepsy came from the Greek word epilambanein, meaning "to be seized." It implies the magical thinking of
+        that time that people with epilepsy were considered unclean or evil and created the stigma related to epilepsy.
+    </p>
+
+    <h3>Epilepsy in India</h3>
+    <p>
+        According to various studies, it is estimated that the overall prevalence of epilepsy in India is 5.59-10 per
+        1000.
+        According to a study conducted by Bharucha et al. in India, a more significant number of males are affected by
+        epilepsy.
+        The prevalence in males (5.1 per 1000) was significantly greater than in females (2.2 per 100).
+    </p>
+
+    <h3>Types of epilepsy</h3>
+    <p>
+        The most recent classification model is the 2017 classification of seizures and epilepsies by the International
+        League Against Epilepsy (ILAE). It helps patients and their caregivers easily understand seizures that have both
+        focal and generalized onset, including missing seizures. The revised epilepsy classification is a multi-level
+        classification and is classified into four main types:
+    </p>
+    <ol>
+        <li>Focal</li>
+        <li>Generalized</li>
+        <li>Combined Generalized and Focal</li>
+        <li>Unknown Epilepsies</li>
+    </ol>
+    <h3>Epilepsy diagnosis</h3>
+    <p>
+        Generally, it is quite challenging to diagnose epilepsy quickly because similar symptoms can be seen in
+        migraine, fainting, and panic attacks; below are some of the tests to diagnose epilepsy:
+    </p>
+    <ul>
+        <li>Blood tests</li>
+        <li>Electroencephalogram (EEG)</li>
+        <li>Computed Tomography (CT) scan</li>
+        <li>Magnetic Resonance Imaging (MRI) scan</li>
+        <li>Positron Emission Tomography (PET)</li>
+        <li>Neuropsychological Assessment</li>
+        <li>Intracarotid Memory and Speech Evaluation (Wada test)</li>
+    </ul>
+    <h3>Epilepsy Symptoms</h3>
+    <p>
+        Although epilepsy symptoms mainly consist of the generalized occurrence of seizures, there are several factors
+        that differentiate epilepsy and seizure disorder. Epileptic seizures vary from person to person. Anyhow, it is
+        quite common for an aura to manifest before the initiation of a seizure. Aura includes symptoms such as:
+    </p>
+    <ul>
+        <li>Abnormal smells</li>
+        <li>Fear sensation</li>
+        <li>Increased epigastric sensation</li>
+        <li>Paraesthesia’s (abnormal sensation of the skin that can feel like tingling, numbness, burning, or pricking)</li>
+    </ul>
+    <p>
+        The following are seen in the postictal state (a state that follows generalized onset seizures, which lasts from
+        minutes to hours):
+    </p>
+    <ul>
+        <li>Headache</li>
+        <li>Confusion</li>
+        <li>Deep sleep</li>
+        <li>Muscle soreness</li>
+    </ul>
+    <h3>Epilepsy Treatment</h3>
+    <ul>
+        <li>
+            <strong>Nonpharmacological Treatment:</strong> 
+            A special diet (ketogenic diet) that can help control seizures.
+        </li>
+        <li>
+            <strong>Pharmacological Treatment:</strong> 
+            Medicines called antiepileptic drugs (AEDs).
+        </li>
+        <li>
+            <strong>Surgical Management:</strong> 
+            Surgery to remove a small part of the brain that's causing the seizures.
+        </li>
+        <li>
+            <strong>Interventional Treatment:</strong> 
+            A procedure in which a small electrical device is inserted in the body that can help control seizures.
+        </li>
+    </ul>
+
+    <h3>Our Solution</h3>
+    <p>
+        This project introduces an advanced prediction system utilizing machine learning, specifically 
+        the Random Forest algorithm, to analyze epilepsy-related data. By collecting and processing 
+        key health and lifestyle indicators, our platform provides accurate, data-driven insights 
+        into epilepsy prediction, detection, and management success probability.
+    </p>
+
+     
+</div>
+
+
+
+{% endblock content %}

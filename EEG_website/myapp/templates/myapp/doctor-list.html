@@ -1,0 +1,130 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+<style>
+    .profile-img {
+        width: 150px;
+        /* Set the desired width */
+        height: 150px;
+        /* Set the desired height */
+        object-fit: cover;
+        /* Ensure the image is cropped to fit */
+        margin: 0 auto;
+        /* Center the image horizontally */
+        display: block;
+        /* Ensure proper alignment */
+    }
+</style>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Doctor List</h1>
+    <p class="text-center mb-4">
+        Browse through our curated list of experienced doctors specializing in epilepsy treatment and care.
+    </p>
+
+    <!-- Search Bar -->
+    <div class="mb-4 d-flex justify-content-between">
+        <input type="text" class="form-control w-50" id="doctorSearch" placeholder="Search Doctors...">
+        <div class="d-flex">
+            <!-- View Toggle Buttons -->
+            <button class="btn btn-outline-primary mx-2" id="listViewBtn"><i class="fas fa-list"></i> List View</button>
+            <button class="btn btn-outline-primary" id="gridViewBtn"><i class="fas fa-th-large"></i> Grid View</button>
+        </div>
+    </div>
+
+    <!-- Doctor Cards Container -->
+    <div class="row" id="doctorList">
+        {% for doctor in doctors %}
+        <div class="col-md-6 col-lg-4 mb-4 doctor-card">
+            <div class="card shadow-sm">
+                <img src="{% if doctor.profile_pic %}{{ doctor.profile_pic.url }}{% else %}/media/default_profile.png{% endif %}"
+                    class="card-img-top rounded-circle profile-img" alt="Doctor Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ doctor.user }}</h5>
+                    <p class="card-text">
+                        <strong>Name:</strong> {{ doctor.user.first_name }} {{ doctor.user.last_name }}<br>
+                        <strong>Specialization:</strong> {{ doctor.department }}<br>
+                        <strong>Location:</strong> {{ doctor.address }}<br>
+                        <strong>Mobile:</strong> {{ doctor.mobile }}
+                    </p>
+                    {% if user.is_authenticated %}
+                    {% if doctor.is_assigned %}
+                        <button class="btn btn-success btn-sm" disabled>Already Added</button>
+                    {% else %}
+                        <a href="#" class="btn btn-primary btn-sm add-doctor-btn" data-doctor-id="{{ doctor.id }}">
+                            Add Doctor
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <button class="btn btn-secondary btn-sm" disabled>Login to Add</button>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No doctors found.</p>
+        {% endfor %}
+    </div>
+
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.add-doctor-btn').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();  // Prevent page reload
+                var doctorId = this.getAttribute('data-doctor-id');
+
+                fetch(`/add-doctor/${doctorId}/`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            this.innerText = "Doctor Added";  // Update button text
+                            this.classList.remove('btn-primary');
+                            this.classList.add('btn-success');
+                            this.disabled = true;  // Disable button
+                        }
+                        alert(data.message);  // Show success/error message
+                    });
+            });
+        });
+    });
+</script>
+<script>
+    // JavaScript for search functionality
+    document.getElementById('doctorSearch').addEventListener('keyup', function () {
+        var searchQuery = this.value.toLowerCase();
+        var doctors = document.querySelectorAll('.doctor-card');
+
+        doctors.forEach(function (doctor) {
+            var doctorName = doctor.querySelector('.card-title').textContent.toLowerCase();
+            var doctorSpecialization = doctor.querySelector('.card-text').textContent.toLowerCase();
+            if (doctorName.includes(searchQuery) || doctorSpecialization.includes(searchQuery)) {
+                doctor.style.display = '';
+            } else {
+                doctor.style.display = 'none';
+            }
+        });
+    });
+
+    // JavaScript for view toggle functionality
+    document.getElementById('listViewBtn').addEventListener('click', function () {
+        var doctorCards = document.querySelectorAll('.doctor-card');
+        doctorCards.forEach(function (card) {
+            card.classList.remove('col-md-6', 'col-lg-4');
+            card.classList.add('col-12', 'mb-3');
+        });
+    });
+
+    document.getElementById('gridViewBtn').addEventListener('click', function () {
+        var doctorCards = document.querySelectorAll('.doctor-card');
+        doctorCards.forEach(function (card) {
+            card.classList.remove('col-12', 'mb-3');
+            card.classList.add('col-md-6', 'col-lg-4');
+        });
+    });
+</script>
+{% endblock content %}

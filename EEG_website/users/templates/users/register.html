@@ -1,0 +1,62 @@
+{% extends "myapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="content-section">
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <legend class="border-bottom mb-4">Join Today</legend>
+                <div class="col-md-8 offset-md-2">
+                    <!-- Sign Up Content -->
+                    <div class="account-content">
+                        <div class="login-header">
+                            <h3>Sign Up <span>User</span>
+                                <a href="{% url 'login' %}" style="text-decoration: none;">Are you a User?</a>
+                            </h3>
+                        </div>
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                {% for field in form %}
+                                {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                                {% endfor %}
+                                {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="form-floating mt-3 mb-3">
+                                {{ form.username|as_crispy_field }}
+                            </div>
+                            <div class="form-floating mt-3 mb-3">
+                                {{ form.email|as_crispy_field }} <!-- Add email field -->
+                            </div>
+                            <div class="form-floating mt-3 mb-3">
+                                {{ form.password1|as_crispy_field }}
+                            </div>
+                            <div class="form-floating mt-3 mb-3">
+                                {{ form.password2|as_crispy_field }}
+                            </div>
+                            <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Sign Up</button>
+                            <div class="text-center dont-have">
+                                Already Have An Account?
+                                <a href="{% url 'login' %}" style="text-decoration: none;">Sign In</a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /Sign Up Content -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Content -->
+</div> 
+{% endblock content %}

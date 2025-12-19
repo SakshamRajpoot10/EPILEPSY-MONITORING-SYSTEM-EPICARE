@@ -1,0 +1,153 @@
+body {
+  background: #fdfdfd; /* Lightened background for better contrast */
+  color: #2e2e2e; /* Slightly darker gray for body text */
+  margin-top: 0;
+}
+
+h1 {
+  color: #6e5fb1; /* Vibrant pink-red for the main header */
+  font-weight: 700; 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Soft shadow for subtle depth */
+}
+
+h2 {
+  color: #8b79da; /* Slightly deeper pink for the second-level heading */
+  font-weight: 600; 
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+h3 {
+  color: #5133d7; /* Deep pink for third-level heading */
+  font-weight: 600; 
+}
+
+h4 {
+  color: #502ee7; /* Darker pink-red for fourth-level heading */
+  font-weight: 500; 
+}
+
+h5 {
+  color: #674ae8; /* Slightly muted pink for fifth-level heading */
+  font-weight: 500;
+}
+
+h6 {
+  color: #684ce5; /* Darkest shade for sixth-level heading */
+  font-weight: 500;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5em; /* Spacing to create a clear separation */
+  margin-bottom: 0.5em; 
+}
+
+
+ul {
+  margin: 0;
+}
+
+/* Updated navbar with more vibrant color contrast */
+.navbar-light-pink {
+  background-color: #9c92c9; /* Vibrant soft pink */
+}
+
+/* Steely section background */
+.bg-steel {
+  background-color: #9a6b8a; /* More vibrant, balanced blue-gray */
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #e0e9ef; /* Lightened navbar links */
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff; /* Brighter hover color */
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 600; /* Slightly bolder for emphasis */
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 15px 25px; /* Increased padding for a more spacious feel */
+  border: 1px solid #cccccc;
+  border-radius: 5px; /* Rounded corners for a smoother look */
+  margin-bottom: 25px;
+}
+
+/* Vibrant color for article title */
+.article-title {
+  color: #333333;
+}
+
+a.article-title:hover {
+  color: #ff6f91; /* Bright pinkish hover for links */
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 70px;
+  width: 70px;
+  margin-right: 18px;
+}
+
+.article-metadata {
+  padding-bottom: 2px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #d1d1d1;
+}
+
+.article-metadata a:hover {
+  color: #555555; /* Dark gray hover for metadata links */
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 130px;
+  width: 130px;
+  margin-right: 22px;
+  margin-bottom: 18px;
+}
+
+.account-heading {
+  font-size: 2.7rem;
+  color: #4a4a4a; /* Darker color for better readability */
+}
+
+ 
+
+.btn-primary {
+  background-color: #431fe1 !important; /* New pink color */
+  color: white !important; /* Adjust text color if needed */
+  border-color: #5e529c !important; /* Ensure the border color matches */
+}
+
+.btn-primary:hover {
+  background-color: #8570e6 !important; /* Change color on hover if desired */
+  border-color: #6653ba !important; /* Change border color on hover if desired */
+}
+
+
+.footer-pink {
+  background-color: #876cfc; /* Vibrant pink shade for footer */
+  color: #ffffff; /* White text for readability */
+}
+
+.footer-pink .nav-link {
+  color: #ffffff;
+}
+
+.footer-pink .nav-link:hover {
+  color: #f2f2f2; /* Slightly lighter hover effect */
+}
